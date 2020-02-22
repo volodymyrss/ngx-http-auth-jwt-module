@@ -2,7 +2,7 @@ FROM centos:7
 
 LABEL maintainer="TeslaGov" email="developers@teslagov.com"
 
-ARG NGINX_VERSION=1.12.2
+ARG NGINX_VERSION=1.16.1
 
 ENV LD_LIBRARY_PATH=/usr/local/lib
 
@@ -10,7 +10,7 @@ RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.n
     yum -y update && \
     yum -y groupinstall 'Development Tools' && \
     yum -y install pcre-devel pcre zlib-devel openssl-devel wget cmake check-devel check && \
-    yum -y install nginx-$NGINX_VERSION
+    yum -y install nginx-${NGINX_VERSION}
 
 # for compiling for rh-nginx110
 # yum -y install libxml2 libxslt libxml2-devel libxslt-devel gd gd-devel perl-ExtUtils-Embed
@@ -133,6 +133,7 @@ RUN wget http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz && \
 # Get nginx ready to run
 COPY resources/nginx.conf /etc/nginx/nginx.conf
 COPY resources/test-jwt-nginx.conf /etc/nginx/conf.d/test-jwt-nginx.conf
+COPY resources/index.html /usr/share/nginx/html/index.html
 RUN cp -r /usr/share/nginx/html /usr/share/nginx/secure
 RUN cp -r /usr/share/nginx/html /usr/share/nginx/secure-rs256
 RUN cp -r /usr/share/nginx/html /usr/share/nginx/secure-auth-header
