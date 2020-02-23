@@ -15,6 +15,14 @@ all:
 	@$(MAKE) start-nginx
 	@$(MAKE) test
 
+.PHONY: build-base
+build-base:
+	@echo "${BLUE}  Building...${NC}"
+	@docker image build -f Dockerfile-base -t $(DOCKER_ORG_NAME)/$(DOCKER_IMAGE_NAME)-base . ; \
+	if [ $$? -ne 0 ] ; \
+		then echo "${RED}  Build failed :(${NC}" ; \
+	else echo "${GREEN}✓ Successfully built NGINX module ${NC}" ; fi
+
 .PHONY: build-nginx
 build-nginx:
 	@echo "${BLUE}  Building...${NC}"
