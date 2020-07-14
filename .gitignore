@@ -1,2 +1,7 @@
 .idea
 ngx_http_auth_jwt_module.so
+resources/oda-jwt-nginx.conf
+secret
+custom-jwt
+validjwt
+renewed-payload

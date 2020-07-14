@@ -1,4 +1,4 @@
-FROM cdcihub/jwt-nginx
+FROM cdcihub/jwt-nginx-base
 
 
 # Get nginx ready to run
